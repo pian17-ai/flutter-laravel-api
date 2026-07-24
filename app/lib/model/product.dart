@@ -12,7 +12,7 @@ class Product {
     required this.price,
     required this.stock,
     required this.description,
-    this.image;
+    this.image
   });
 
   factory Product.fromJson(Map<String,dynamic>json){
@@ -21,10 +21,10 @@ class Product {
       name: json['name'],
       price: json['price'],
       stock: json['stock'],
-      description: json['description']
-      gambar: json['image']
+      description: json['description'],
+      image: json['image']
     );
-  };
+  }
 
   Map<String,dynamic>toJson(){
     return {
@@ -34,6 +34,6 @@ class Product {
       "stock": stock,
       "description": description,
       "image": image,
-    }
+    };
   }
 }
