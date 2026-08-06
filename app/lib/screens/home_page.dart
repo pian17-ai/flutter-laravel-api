@@ -1,5 +1,7 @@
 import 'package:app/model/product.dart';
-import 'package:app/service/api_service.dart';
+import 'package:app/screens/add_product_page.dart';
+import 'package:app/services/api_service.dart';
+import 'package:app/widgets/product_card.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -20,7 +22,13 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
       ),
 
-      body: FutureBuilder<List<Product>>(
+      body: RefreshIndicator(
+        onRefresh: () async {
+          setState(() {
+            
+          });
+        },
+        child: FutureBuilder<List<Product>>(
         future: api.getProducts(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -51,10 +59,20 @@ class _HomePageState extends State<HomePage> {
           );
         },
       ),
+      ),
 
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-
+        onPressed: () async {
+          final result = await Navigator.push(
+            context, MaterialPageRoute(
+              builder: (_) => const AddProductPage()
+            ),
+          );
+          if (result==true) {
+            setState(() {
+              
+            });
+          }
         },
         child: const Icon(Icons.add),
       ),

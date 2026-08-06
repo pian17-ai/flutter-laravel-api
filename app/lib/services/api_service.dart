@@ -17,4 +17,19 @@ class ApiService {
       throw Exception("Get all data failed");
     }
   }
+
+  Future<bool>storeProduct(
+    Product product,
+  ) async {
+    final response = await http.post(
+      Uri.parse("${baseUrl}/products"),
+      body: {
+        "name" : product.name,
+        "price" : product.price.toString(),
+        "stock" : product.stock.toString(),
+        "description" : product.description,
+      }
+    );
+    return response.statusCode==201;
+  }
 }
