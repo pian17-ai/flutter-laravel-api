@@ -32,4 +32,22 @@ class ApiService {
     );
     return response.statusCode==201;
   }
+
+  Future<bool>updateProduct(Product product) async {
+    final response = await http.put(Uri.parse("${baseUrl}/products/${product.id}"),
+      body: {
+        "name" : product.name,
+        "price" : product.price.toString(),
+        "stock" : product.stock.toString(),
+        "description" : product.description,
+      }
+    );
+    return response.statusCode == 200;
+  }
+
+  Future<bool>deleteProduct(Product product) async {
+    final response = await http.delete(Uri.parse("${baseUrl}/products/${product.id}"),
+    );
+    return response.statusCode == 200;
+  }
 }

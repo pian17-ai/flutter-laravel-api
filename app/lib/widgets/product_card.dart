@@ -3,7 +3,14 @@ import 'package:flutter/material.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
-  const ProductCard({super.key, required this.product});
+  final VoidCallback onEdit;
+  final VoidCallback onDelete;
+  const ProductCard({
+    super.key, 
+    required this.product, 
+    required this.onEdit,
+    required this.onDelete
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +60,37 @@ class ProductCard extends StatelessWidget {
             ),
           ),
 
+          const SizedBox(height: 10,),
+
+          Row(
+            children: [
+              Expanded(
+                child: ElevatedButton.icon(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue,
+                    foregroundColor: Colors.white
+                  ),
+                  onPressed: onEdit,
+                  icon: Icon(Icons.update),
+                  label: const Text("Edit"),
+                )
+                ),
+
+                const SizedBox(height: 10,),
+
+                Expanded(
+                child: ElevatedButton.icon(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.red,
+                    foregroundColor: Colors.white
+                  ),
+                  onPressed: onDelete,
+                  icon: Icon(Icons.delete),
+                  label: const Text("Delete"),
+                )
+                ),
+            ],
+          )
         ],
       ),
       ),
