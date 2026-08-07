@@ -1,5 +1,6 @@
 import 'package:app/model/product.dart';
 import 'package:app/screens/add_product_page.dart';
+import 'package:app/screens/show_product_page.dart';
 import 'package:app/screens/update_product_page.dart';
 import 'package:app/services/api_service.dart';
 import 'package:app/widgets/product_card.dart';
@@ -104,6 +105,19 @@ class _HomePageState extends State<HomePage> {
 
                 onDelete: () {
                   deleteProduct(snapshot.data![index]);
+                },
+
+                onDetail: () async {
+                  await Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => ShowProductPage(
+                      product: snapshot.data![index]
+                      )
+                    )
+                  );
+                  setState(() {
+                    
+                  });
                 },
               );
             },

@@ -5,16 +5,21 @@ class ProductCard extends StatelessWidget {
   final Product product;
   final VoidCallback onEdit;
   final VoidCallback onDelete;
+  final VoidCallback onDetail;
+
   const ProductCard({
     super.key, 
     required this.product, 
     required this.onEdit,
-    required this.onDelete
+    required this.onDelete,
+    required this.onDetail
   });
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return InkWell(
+      onTap: onDetail,
+    child: Card(
       margin: const EdgeInsets.all(10),
       elevation: 4,
       child: Padding(padding: const EdgeInsets.all(15),
@@ -94,6 +99,7 @@ class ProductCard extends StatelessWidget {
         ],
       ),
       ),
+    )
     );
   }
 }
